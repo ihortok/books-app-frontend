@@ -1,0 +1,48 @@
+.book-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: left;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: var(--shadow);
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+.book-info {
+  flex: 1;
+  min-width: 0;
+
+  h3 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-h);
+  }
+}
+
+.book-author {
+  color: var(--accent);
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.book-description {
+  font-size: 15px;
+  line-height: 150%;
+}
+
+.book-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}

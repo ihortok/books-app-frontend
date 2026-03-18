@@ -1,0 +1,11 @@
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-state {
+  padding: 48px 20px;
+  color: var(--text);
+  font-size: 18px;
+}
