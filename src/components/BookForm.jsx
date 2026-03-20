@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import './BookForm.css'
 
-function BookForm({ onSubmit, onCancel, initialData }) {
+function BookForm({ onSubmit, onCancel, initialData, authors }) {
   const [title, setTitle] = useState(initialData?.title ?? '')
-  const [author, setAuthor] = useState(initialData?.author ?? '')
+  const [authorId, setAuthorId] = useState(initialData?.author_id ?? '')
   const [year, setYear] = useState(initialData?.year ?? '')
   const [description, setDescription] = useState(initialData?.description ?? '')
 
@@ -11,7 +11,7 @@ function BookForm({ onSubmit, onCancel, initialData }) {
     e.preventDefault()
     onSubmit({
       title,
-      author,
+      author_id: authorId,
       year: year ? parseInt(year, 10) : null,
       description: description || null,
     })
@@ -32,13 +32,19 @@ function BookForm({ onSubmit, onCancel, initialData }) {
       </div>
       <div className="form-field">
         <label htmlFor="author">Author</label>
-        <input
+        <select
           id="author"
-          type="text"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          value={authorId}
+          onChange={(e) => setAuthorId(e.target.value)}
           required
-        />
+        >
+          <option value="">Select an author</option>
+          {authors.map((a) => (
+            <option key={a.id} value={a.id}>
+              {a.name}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="form-field">
         <label htmlFor="year">Year</label>

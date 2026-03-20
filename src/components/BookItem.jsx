@@ -11,7 +11,7 @@ function BookItem({ book, onEdit, onDelete }) {
     <div className="book-item">
       <div className="book-info">
         <h3>{book.title}</h3>
-        <p className="book-author">{book.author}{book.year ? ` · ${book.year}` : ''}</p>
+        <p className="book-author">{book.author.name}{book.year ? ` · ${book.year}` : ''}</p>
         {book.description && <p className="book-description">{book.description}</p>}
       </div>
       <div className="book-actions">

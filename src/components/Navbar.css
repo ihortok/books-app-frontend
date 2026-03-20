@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+  gap: 4px;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    padding: 12px 20px;
+  }
+}
+
+.nav-link {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text);
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: var(--accent-bg);
+    color: var(--accent);
+  }
+
+  &.active {
+    background: var(--accent-bg);
+    color: var(--accent);
+  }
+}
