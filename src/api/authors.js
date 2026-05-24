@@ -2,9 +2,14 @@ const BASE = '/api/authors'
 
 async function request(url, options = {}) {
   const res = await fetch(url, {
+    credentials: 'same-origin',
     headers: { 'Content-Type': 'application/json', ...options.headers },
     ...options,
   })
+  if (res.status === 401) {
+    window.location.href = '/api/auth/login'
+    return new Promise(() => {})
+  }
   if (!res.ok) {
     const body = await res.json().catch(() => null)
     throw new Error(body?.detail || `Request failed: ${res.status}`)

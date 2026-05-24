@@ -1,0 +1,32 @@
+.sign-in-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px;
+  gap: 16px;
+  text-align: center;
+}
+
+.sign-in-gate h1 {
+  font-family: var(--sans);
+  font-weight: 600;
+  margin: 0;
+}
+
+.sign-in-gate p {
+  color: var(--text);
+  opacity: 0.8;
+  margin: 0 0 8px;
+}
+
+.sign-in-gate .btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+}

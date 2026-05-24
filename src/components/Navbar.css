@@ -1,12 +1,37 @@
 .navbar {
   display: flex;
-  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   padding: 16px 32px;
   border-bottom: 1px solid var(--border);
 
   @media (max-width: 1024px) {
     padding: 12px 20px;
   }
+}
+
+.navbar-links {
+  display: flex;
+  gap: 4px;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-email {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.nav-link[href] {
+  text-decoration: none;
+  display: inline-block;
 }
 
 .nav-link {

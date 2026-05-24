@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react'
 import { listBooks, createBook, updateBook, deleteBook } from './api/books'
 import { listAuthors, createAuthor, updateAuthor, deleteAuthor } from './api/authors'
+import { useCurrentUser } from './hooks/useCurrentUser'
 import Navbar from './components/Navbar'
 import BookList from './components/BookList'
 import BookForm from './components/BookForm'
 import AuthorList from './components/AuthorList'
 import AuthorForm from './components/AuthorForm'
+import SignInGate from './components/SignInGate'
 import './App.css'
 
 function App() {
+  const user = useCurrentUser()
   const [page, setPage] = useState('books')
   const [books, setBooks] = useState([])
   const [authors, setAuthors] = useState([])
@@ -18,6 +21,8 @@ function App() {
   const [editingItem, setEditingItem] = useState(null)
 
   useEffect(() => {
+    if (!user) return
+    setLoading(true)
     Promise.all([listBooks(), listAuthors()])
       .then(([booksData, authorsData]) => {
         setBooks(booksData)
@@ -25,7 +30,14 @@ function App() {
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false))
-  }, [])
+  }, [user])
+
+  if (user === undefined) {
+    return <p className="status-text">Loading...</p>
+  }
+  if (user === null) {
+    return <SignInGate />
+  }
 
   function handleNavigate(newPage) {
     setPage(newPage)
@@ -119,7 +131,7 @@ function App() {
 
   return (
     <>
-      <Navbar page={page} onNavigate={handleNavigate} />
+      <Navbar page={page} onNavigate={handleNavigate} user={user} />
       <div className="app">
         {error && (
           <div className="error-banner">
